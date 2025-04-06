@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://oauqeqmkidw7"]
+
+[ext_resource type="Script" uid="uid://dlqym43utxjwb" path="res://scripts/gameplay/level.gd" id="1_4odjj"]
+[ext_resource type="Texture2D" uid="uid://dqpkyg7y53652" path="res://sprites/levels/cross.png" id="2_msgvm"]
+[ext_resource type="PackedScene" uid="uid://bxpj75bdim63u" path="res://scenes/bat.tscn" id="3_pp8fe"]
+[ext_resource type="PackedScene" uid="uid://b34pqjoit5rfr" path="res://scenes/carryables/umbrella.tscn" id="5_msgvm"]
+[ext_resource type="PackedScene" uid="uid://cae1mvmnkoatf" path="res://scenes/mouse.tscn" id="6_leqpj"]
+[ext_resource type="PackedScene" uid="uid://ck8qpwveu8lw7" path="res://scenes/cheese.tscn" id="8_d6o4c"]
+
+[node name="Stack" type="Node2D"]
+script = ExtResource("1_4odjj")
+
+[node name="LevelSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_msgvm")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelSprite"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelSprite/StaticBody2D"]
+position = Vector2(940.5, 524)
+scale = Vector2(78.75, 46.7)
+build_mode = 1
+polygon = PackedVector2Array(-7.6127, -10.7923, -8.46349, -10.1499, -8.89524, -8.7152, -9.11111, -5.93148, -10.6984, -5.54604, -11.6, -4.43255, -11.6762, -2.22698, -10.5841, -1.39186, -9.13651, -1.37045, -9.02222, -1.09208, -8.89524, 6.35974, -8.19683, 7.77302, -6.69841, 7.83726, -6, 7.15203, -5.78413, 4.75375, -5.88572, -0.877944, -5.69524, -1.15632, -4.04445, -1.15632, -3.42222, -3.31906, -3.5746, -4.90364, -4.81905, -6.05996, -5.92381, -6.14561, -6.60952, -9.72163)
+
+[node name="Bat" parent="." instance=ExtResource("3_pp8fe")]
+position = Vector2(347, 76)
+
+[node name="Mouse" parent="." instance=ExtResource("6_leqpj")]
+position = Vector2(546, 453)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1000, 138)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Umbrella" parent="." instance=ExtResource("5_msgvm")]
+position = Vector2(370, 819)
+gravity_scale = 0.6
+linear_damp = 3.0
+
+[node name="Cheese" parent="." node_paths=PackedStringArray("level") instance=ExtResource("8_d6o4c")]
+position = Vector2(147, 432)
+level = NodePath("..")

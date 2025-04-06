@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://4nm54rvxdrp7"]
+
+[ext_resource type="Script" uid="uid://dlqym43utxjwb" path="res://scripts/gameplay/level.gd" id="1_4khd8"]
+[ext_resource type="Texture2D" uid="uid://c4uqvlxn5wc3i" path="res://sprites/levels/pit.png" id="2_vu1b0"]
+[ext_resource type="Texture2D" uid="uid://cgt3kb3eqkyqe" path="res://sprites/ui/how_to_restart.png" id="3_4khd8"]
+[ext_resource type="PackedScene" uid="uid://bxpj75bdim63u" path="res://scenes/bat.tscn" id="3_xn2xj"]
+[ext_resource type="PackedScene" uid="uid://cae1mvmnkoatf" path="res://scenes/mouse.tscn" id="4_utagy"]
+[ext_resource type="PackedScene" uid="uid://ck8qpwveu8lw7" path="res://scenes/cheese.tscn" id="5_3hwwg"]
+[ext_resource type="Texture2D" uid="uid://c0n15qui1wwv4" path="res://sprites/entities/bridge.png" id="6_fcta5"]
+
+[node name="Pit" type="Node2D"]
+script = ExtResource("1_4khd8")
+
+[node name="LevelSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_vu1b0")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelSprite"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelSprite/StaticBody2D"]
+position = Vector2(940.5, 524)
+scale = Vector2(78.75, 46.7)
+build_mode = 1
+polygon = PackedVector2Array(-5.14921, -10.7923, -8.99683, -9.89293, -11.6381, -5.69593, -11.1937, -1.90578, -10.1524, -1.34904, -8.14603, -1.32762, -7.6381, -0.813704, -6.63492, 4.86081, -5.02222, 5.95289, -1.86032, 5.28908, -1.37778, 1.1349, -1.25079, -1.1349, -0.971429, -1.41328, 0.146031, -1.62741, 0.933332, -3.12634, 0.882539, -5.84582, -0.920635, -9.57173)
+
+[node name="HowToRestart" type="Sprite2D" parent="."]
+position = Vector2(605, 676)
+texture = ExtResource("3_4khd8")
+
+[node name="Bat" parent="." instance=ExtResource("3_xn2xj")]
+position = Vector2(207, 136)
+
+[node name="Mouse" parent="." instance=ExtResource("4_utagy")]
+position = Vector2(196, 448)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1000, 138)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Cheese" parent="." node_paths=PackedStringArray("level") instance=ExtResource("5_3hwwg")]
+position = Vector2(892, 434)
+rotation = -0.124195
+level = NodePath("..")
+
+[node name="Bridge" type="RigidBody2D" parent="." groups=["carryable"]]
+position = Vector2(407, 553)
+rotation = 0.8935
+collision_layer = 3
+collision_mask = 3
+mass = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Bridge"]
+texture = ExtResource("6_fcta5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bridge"]
+polygon = PackedVector2Array(-306, 3, -304, 15, -178, 15, -45, 11, 36, 2, 305, 2, 303, -14, -97, -16, -192, -1)

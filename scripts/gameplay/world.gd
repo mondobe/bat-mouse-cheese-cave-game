@@ -1,15 +1,16 @@
 class_name World
-extends Node2D
+extends Node
 
 @onready var background_sprite: Sprite2D = $Background
 
-var current_level: Node2D
+var current_level: Node
 
 @export var level_scenes: Array[PackedScene]
-@onready var level_index: int = 0
+@export var start_level: int
+@onready var level_index: int = start_level
 
-func _ready() -> void:
-	switch_level(level_scenes[0])
+func play() -> void:
+	switch_level(level_scenes[start_level])
 
 func switch_level(new_level_scene: PackedScene) -> void:
 	if current_level:
@@ -21,3 +22,7 @@ func switch_level(new_level_scene: PackedScene) -> void:
 func next_level() -> void:
 	level_index += 1
 	switch_level(level_scenes[level_index])
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("restart"):
+		switch_level(level_scenes[level_index])

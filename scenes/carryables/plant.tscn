@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2wtmccksdioh"]
+
+[ext_resource type="Texture2D" uid="uid://cv7orl2hfv2w7" path="res://sprites/entities/plant.png" id="1_ggd7j"]
+
+[node name="Plant" type="RigidBody2D" groups=["carryable"]]
+collision_layer = 3
+collision_mask = 3
+mass = 14.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.395, 0.395)
+texture = ExtResource("1_ggd7j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.395, 0.395)
+polygon = PackedVector2Array(-7.59497, -83.5443, -7.59497, 43.038, -55.6963, 48.1012, -30.3798, 136.709, 35.443, 136.709, 55.6962, 48.1012, 12.6582, 43.038, 5.06323, -83.5443, 60.7594, -83.5443, 45.5696, -121.519, -37.9747, -121.519, -55.6963, -83.5443)

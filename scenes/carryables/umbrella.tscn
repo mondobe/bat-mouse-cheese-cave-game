@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b34pqjoit5rfr"]
+
+[ext_resource type="Texture2D" uid="uid://y0jjcwlbfybo" path="res://sprites/entities/umbrella.png" id="1_1di8p"]
+
+[node name="Umbrella" type="RigidBody2D" groups=["carryable"]]
+collision_layer = 3
+collision_mask = 3
+mass = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_1di8p")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.595, 0.595)
+polygon = PackedVector2Array(0, -96.2024, -45.5696, -91.1392, -96.2026, -68.3542, -121.519, -20.2532, -78.481, -27.8479, -10.1266, -25.3164, -5.06329, 81.0127, -12.6583, 91.1394, -32.9114, 83.5444, -45.5696, 63.2913, -60.7595, 70.8862, -45.5696, 101.266, -12.6583, 108.861, 7.59491, 101.266, 17.7215, 65.823, 7.59491, -20.2532, 75.9493, -27.8479, 118.987, -25.3164, 88.6075, -68.3542, 32.9114, -96.2024)

@@ -32,6 +32,14 @@ polygon = PackedVector2Array(-0.501588, -9.44326, -4.79365, -8.77944, -6.8381, -
 position = Vector2(952, 224)
 texture = ExtResource("8_im2du")
 
+[node name="HowToGrab" type="Sprite2D" parent="."]
+position = Vector2(857, 769)
+texture = ExtResource("9_f5esd")
+
+[node name="HowToSwitch" type="Sprite2D" parent="."]
+position = Vector2(1321, 870)
+texture = ExtResource("10_53yew")
+
 [node name="Bat" parent="." instance=ExtResource("3_yp2xm")]
 position = Vector2(909, 131)
 
@@ -60,13 +68,5 @@ position = Vector2(1278, 927)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1000, 138)
 zoom = Vector2(1.5, 1.5)
-
-[node name="HowToGrab" type="Sprite2D" parent="."]
-position = Vector2(857, 769)
-texture = ExtResource("9_f5esd")
-
-[node name="HowToSwitch" type="Sprite2D" parent="."]
-position = Vector2(1321, 870)
-texture = ExtResource("10_53yew")
 
 [editable path="Chair2"]

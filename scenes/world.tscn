@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhbmho7cxl5t5"]
+[gd_scene load_steps=10 format=3 uid="uid://dhbmho7cxl5t5"]
 
 [ext_resource type="Script" uid="uid://bh3h8rqg8twbt" path="res://scripts/gameplay/world.gd" id="1_4wyf3"]
 [ext_resource type="Texture2D" uid="uid://chwhbeqiod70d" path="res://sprites/environment/cave_bg.png" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://bxouqg06a8cb5" path="res://scenes/levels/test.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://b5gtbd8rv2m2n" path="res://scenes/ui/you_win.tscn" id="3_k0juu"]
+[ext_resource type="PackedScene" uid="uid://d35e6nvngk2ut" path="res://scenes/levels/stack.tscn" id="4_71j4m"]
+[ext_resource type="PackedScene" uid="uid://oauqeqmkidw7" path="res://scenes/levels/cross.tscn" id="4_qfnet"]
+[ext_resource type="PackedScene" uid="uid://c4d2pq0ntv5v7" path="res://scenes/levels/stairs.tscn" id="5_i7141"]
+[ext_resource type="PackedScene" uid="uid://4nm54rvxdrp7" path="res://scenes/levels/pit.tscn" id="6_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://kkc6f68kcrxq" path="res://scenes/ui/title_screen.tscn" id="9_7r4gi"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_4wyf3")
-level_scenes = Array[PackedScene]([ExtResource("2_rwgxs"), ExtResource("3_k0juu")])
+level_scenes = Array[PackedScene]([ExtResource("2_rwgxs"), ExtResource("6_4mrxx"), ExtResource("4_71j4m"), ExtResource("4_qfnet"), ExtResource("5_i7141"), ExtResource("3_k0juu")])
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -15,3 +22,13 @@ texture = ExtResource("1_nnsk1")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 912, 438)
+
+[node name="TitleScreen" parent="." instance=ExtResource("9_7r4gi")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cae1mvmnkoatf"]
+[gd_scene load_steps=8 format=3 uid="uid://cae1mvmnkoatf"]
 
 [ext_resource type="Script" uid="uid://cjku4x7o0wq4f" path="res://scripts/gameplay/mouse.gd" id="1_xa71f"]
+[ext_resource type="AudioStream" uid="uid://bwutv752nhoqe" path="res://audio/jump.mp3" id="2_dexx5"]
 [ext_resource type="Texture2D" uid="uid://ci3djmm7h2aj3" path="res://sprites/mouse/mouse1.png" id="2_iog6k"]
 [ext_resource type="Texture2D" uid="uid://cri067ray4ku5" path="res://sprites/mouse/mouse2.png" id="3_dexx5"]
+[ext_resource type="AudioStream" uid="uid://jqmmtepmm43o" path="res://audio/eat.mp3" id="3_j7mu1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f5esd"]
 animations = [{
@@ -25,7 +27,10 @@ height = 32.0
 [node name="Mouse" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
+floor_max_angle = 1.13446
 script = ExtResource("1_xa71f")
+jump_sound = ExtResource("2_dexx5")
+eat_sound = ExtResource("3_j7mu1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.43, 0.43)
@@ -36,3 +41,7 @@ frame_progress = 0.339387
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_im2du")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -7.0
+attenuation = 3.75715e-05

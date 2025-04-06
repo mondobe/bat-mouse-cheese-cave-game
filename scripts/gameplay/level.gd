@@ -19,6 +19,7 @@ func _ready() -> void:
 	# Define background region
 	var level_dims = Vector2(level_sprite.texture.get_width(), level_sprite.texture.get_height())
 	world.background_sprite.region_rect = Rect2(Vector2.ZERO, level_dims)
+	camera.global_position = bat.global_position
 
 func _process(delta: float) -> void:
 	if controlling_mouse:

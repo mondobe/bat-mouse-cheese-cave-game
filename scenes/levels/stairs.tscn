@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4d2pq0ntv5v7"]
+
+[ext_resource type="Script" uid="uid://dlqym43utxjwb" path="res://scripts/gameplay/level.gd" id="1_xvnfm"]
+[ext_resource type="Texture2D" uid="uid://dlxwji5yndet6" path="res://sprites/levels/stairs.png" id="2_xvnfm"]
+[ext_resource type="PackedScene" uid="uid://bxpj75bdim63u" path="res://scenes/bat.tscn" id="3_lo81u"]
+[ext_resource type="PackedScene" uid="uid://brgctro3k63fh" path="res://scenes/carryables/box.tscn" id="5_6krj5"]
+[ext_resource type="PackedScene" uid="uid://cae1mvmnkoatf" path="res://scenes/mouse.tscn" id="6_nwqc0"]
+[ext_resource type="PackedScene" uid="uid://d2wtmccksdioh" path="res://scenes/carryables/plant.tscn" id="7_e25yg"]
+[ext_resource type="PackedScene" uid="uid://ck8qpwveu8lw7" path="res://scenes/cheese.tscn" id="8_kogo2"]
+
+[node name="Stack" type="Node2D"]
+script = ExtResource("1_xvnfm")
+
+[node name="LevelSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_xvnfm")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelSprite"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelSprite/StaticBody2D"]
+position = Vector2(940.5, 524)
+scale = Vector2(78.75, 46.7)
+build_mode = 1
+polygon = PackedVector2Array(-5.35238, 3.98287, -5.79683, 3.83298, -6.15238, 0.599572, -6.57143, 0.428266, -8.03175, 0.428266, -8.3873, -0.0214128, -8.52699, -2.54818, -8.73016, -2.63383, -10.0635, -2.63383, -10.4825, -3.01927, -11.0286, -4.56103, -11.2571, -7.83726, -10.2667, -10, -7.79048, -10.6852, -2.66032, -10.0857, 0.323809, -7.73019, 1.91111, -3.27623, 0.831745, 1.84154, -0.133334, 3.14775, -1.72064, 3.94004, -3.75238, 3.96146)
+
+[node name="Bat" parent="." instance=ExtResource("3_lo81u")]
+position = Vector2(589, 81)
+
+[node name="Mouse" parent="." instance=ExtResource("6_nwqc0")]
+position = Vector2(849, 681)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1000, 138)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Cheese" parent="." node_paths=PackedStringArray("level") instance=ExtResource("8_kogo2")]
+position = Vector2(210, 381)
+level = NodePath("..")
+
+[node name="Plant" parent="." instance=ExtResource("7_e25yg")]
+position = Vector2(630, 641)
+
+[node name="Sprite2D" parent="Plant" index="0"]
+scale = Vector2(0.474, 0.474)
+
+[node name="CollisionPolygon2D" parent="Plant" index="1"]
+scale = Vector2(0.474, 0.474)
+
+[node name="Box" parent="." instance=ExtResource("5_6krj5")]
+position = Vector2(363, 516)
+
+[node name="Sprite2D" parent="Box" index="0"]
+scale = Vector2(0.474, 0.474)
+
+[node name="CollisionPolygon2D" parent="Box" index="1"]
+scale = Vector2(0.474, 0.474)
+
+[editable path="Plant"]
+[editable path="Box"]

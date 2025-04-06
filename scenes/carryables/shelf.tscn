@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dli0uasuw8tjn"]
+
+[ext_resource type="Texture2D" uid="uid://rm1dmwyqd5gc" path="res://sprites/entities/shelf.png" id="1_kg1vs"]
+
+[node name="Shelf" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.84, 0.84)
+texture = ExtResource("1_kg1vs")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-38, -12, -39, -2, -34, -2, -29, 11, -20, 11, -23, 0, 25, 0, 21, 11, 30, 11, 36, 0, 39, 0, 38, -12)

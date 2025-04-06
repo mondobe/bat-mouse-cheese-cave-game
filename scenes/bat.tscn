@@ -1,10 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxpj75bdim63u"]
+[gd_scene load_steps=18 format=3 uid="uid://bxpj75bdim63u"]
 
 [ext_resource type="Script" uid="uid://bxpnhc705wbtw" path="res://scripts/gameplay/bat.gd" id="1_ss3tx"]
 [ext_resource type="Texture2D" uid="uid://b0ov8q2u74d87" path="res://sprites/bat/dive.png" id="2_5fn3r"]
 [ext_resource type="Texture2D" uid="uid://cldv8smiwuvos" path="res://sprites/bat/flap1.png" id="2_lv0ya"]
+[ext_resource type="AudioStream" uid="uid://djfa6h0k8u3ew" path="res://audio/grab.mp3" id="2_n8eff"]
 [ext_resource type="Texture2D" uid="uid://da743gvp2xwpt" path="res://sprites/bat/flap2.png" id="3_5fn3r"]
+[ext_resource type="AudioStream" uid="uid://bh3rda0c0x8py" path="res://audio/drop.mp3" id="3_rrah6"]
 [ext_resource type="Texture2D" uid="uid://dnoofhsjc3jum" path="res://sprites/bat/idle.png" id="4_8qtcx"]
+[ext_resource type="Texture2D" uid="uid://ddtmw6u1opr4q" path="res://sprites/ui/grab3.png" id="6_p5otw"]
+[ext_resource type="Texture2D" uid="uid://cfr325snycbmf" path="res://sprites/ui/grab4.png" id="7_vjjhm"]
+[ext_resource type="Texture2D" uid="uid://bka67rkcnrwbs" path="res://sprites/ui/grab0.png" id="8_n8eff"]
+[ext_resource type="Texture2D" uid="uid://bkjuisqo6pyhf" path="res://sprites/ui/grab1.png" id="9_rrah6"]
+[ext_resource type="Texture2D" uid="uid://cdn5bk30j4w4c" path="res://sprites/ui/grab2.png" id="10_drkvk"]
+[ext_resource type="Script" uid="uid://blnbrxahg7375" path="res://scripts/effects/grab_sprite.gd" id="11_y1j7x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4bhu"]
 radius = 17.0
@@ -50,12 +58,47 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv0ya"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dk2sj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_p5otw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vjjhm")
+}],
+"loop": true,
+"name": &"circle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_n8eff")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_rrah6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_drkvk")
+}],
+"loop": false,
+"name": &"grow",
+"speed": 10.0
+}]
+
 [node name="Bat" type="RigidBody2D"]
 mass = 2.0
 can_sleep = false
 lock_rotation = true
 linear_damp = 5.2
 script = ExtResource("1_ss3tx")
+grab_sound = ExtResource("2_n8eff")
+drop_sound = ExtResource("3_rrah6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_x4bhu")
@@ -75,3 +118,14 @@ shape = SubResource("RectangleShape2D_lv0ya")
 [node name="CarryJoint" type="PinJoint2D" parent="."]
 position = Vector2(0, 23)
 node_a = NodePath("..")
+
+[node name="GrabSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 34)
+scale = Vector2(0.445, 0.445)
+sprite_frames = SubResource("SpriteFrames_dk2sj")
+animation = &"circle"
+autoplay = "default"
+script = ExtResource("11_y1j7x")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -7.0
