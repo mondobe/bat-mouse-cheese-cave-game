@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5gtbd8rv2m2n"]
+
+[ext_resource type="Texture2D" uid="uid://d3075ckq63vpd" path="res://sprites/levels/win.png" id="1_i0du1"]
+[ext_resource type="Script" uid="uid://cfbwkgy1pax34" path="res://scripts/gameplay/you_win.gd" id="1_mo8li"]
+[ext_resource type="Texture2D" uid="uid://bwjm3cd1exjtu" path="res://sprites/entities/got_cheese1.png" id="3_7m8yv"]
+[ext_resource type="Texture2D" uid="uid://bocugtjk0g22f" path="res://sprites/entities/got_cheese2.png" id="4_en32y"]
+[ext_resource type="Texture2D" uid="uid://dmfkq3n7102r4" path="res://sprites/ui/thanks_for_playing.png" id="5_mo8li"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnddv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7m8yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_en32y")
+}],
+"loop": true,
+"name": &"got",
+"speed": 6.0
+}]
+
+[node name="YouWin" type="Node2D"]
+script = ExtResource("1_mo8li")
+
+[node name="LevelSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_i0du1")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelSprite"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelSprite/StaticBody2D"]
+position = Vector2(940.5, 524)
+scale = Vector2(78.75, 46.7)
+build_mode = 1
+polygon = PackedVector2Array(-0.501588, -9.44326, -4.79365, -8.77944, -6.8381, -7.34475, -8.85714, -3.2334, -9.44127, 2.69807, -9.2254, 5.76017, -7.94286, 7.85867, -4.98413, 8.56531, -1.87302, 8.92934, 6.38095, 8.90792, 8.73016, 7.79443, 9.1746, 4.45396, 8.93333, -0.214132, 7.71428, -4.43255, 5.82222, -8.26552, 4.83175, -9.01499, 2.21587, -9.31478)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(585, 342)
+sprite_frames = SubResource("SpriteFrames_hnddv")
+animation = &"got"
+autoplay = "got"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(468, 4)
+
+[node name="ThanksForPlaying" type="Sprite2D" parent="."]
+position = Vector2(398, -238)
+texture = ExtResource("5_mo8li")

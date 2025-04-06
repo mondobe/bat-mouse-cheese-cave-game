@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://8ujs7at7cium"]
+
+[ext_resource type="Texture2D" uid="uid://be4g2lotdib4m" path="res://sprites/entities/chair.png" id="1_m5cyu"]
+[ext_resource type="Script" uid="uid://divyyhgush83" path="res://scripts/gameplay/carryable.gd" id="2_ostoe"]
+
+[node name="Chair" type="RigidBody2D" groups=["carryable"]]
+collision_layer = 3
+collision_mask = 3
+mass = 14.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.395, 0.395)
+texture = ExtResource("1_m5cyu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.395, 0.395)
+polygon = PackedVector2Array(37.9747, -131.646, 40.5063, 5.06329, -70.8861, 7.59494, -70.8861, 131.646, -40.5063, 131.646, -40.5063, 35.443, 43.038, 35.443, 45.5696, 134.177, 73.4177, 134.177, 78.481, -136.709)
+
+[node name="Carryable" type="Node2D" parent="."]
+script = ExtResource("2_ostoe")

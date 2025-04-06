@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxouqg06a8cb5"]
+
+[ext_resource type="Script" uid="uid://dlqym43utxjwb" path="res://scripts/gameplay/level.gd" id="1_8153q"]
+[ext_resource type="Texture2D" uid="uid://btx87w55nexbq" path="res://sprites/levels/test.png" id="2_52kye"]
+[ext_resource type="PackedScene" uid="uid://bxpj75bdim63u" path="res://scenes/bat.tscn" id="3_yp2xm"]
+[ext_resource type="PackedScene" uid="uid://qth8uyeygmfg" path="res://scenes/carryables/table.tscn" id="4_uyl1e"]
+[ext_resource type="PackedScene" uid="uid://8ujs7at7cium" path="res://scenes/carryables/chair.tscn" id="5_7115g"]
+[ext_resource type="PackedScene" uid="uid://ck8qpwveu8lw7" path="res://scenes/cheese.tscn" id="5_kw13u"]
+[ext_resource type="PackedScene" uid="uid://cae1mvmnkoatf" path="res://scenes/mouse.tscn" id="6_koekj"]
+[ext_resource type="Texture2D" uid="uid://b5xlrwvm7j30p" path="res://sprites/ui/how_to_move.png" id="8_im2du"]
+[ext_resource type="Texture2D" uid="uid://dm4cr6j6ferb8" path="res://sprites/ui/how_to_grab.png" id="9_f5esd"]
+[ext_resource type="Texture2D" uid="uid://bdgrrx43og6p2" path="res://sprites/ui/how_to_switch.png" id="10_53yew"]
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_8153q")
+
+[node name="LevelSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_52kye")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelSprite"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelSprite/StaticBody2D"]
+position = Vector2(940.5, 524)
+scale = Vector2(78.75, 46.7)
+build_mode = 1
+polygon = PackedVector2Array(-0.501588, -9.44326, -4.79365, -8.77944, -6.8381, -7.34475, -8.85714, -3.2334, -9.44127, 2.69807, -9.2254, 5.76017, -7.94286, 7.85867, -4.98413, 8.56531, -1.87302, 8.92934, 6.38095, 8.90792, 8.73016, 7.79443, 9.1746, 4.45396, 8.93333, -0.214132, 7.71428, -4.43255, 5.82222, -8.26552, 4.83175, -9.01499, 2.21587, -9.31478)
+
+[node name="HowToMove" type="Sprite2D" parent="."]
+position = Vector2(952, 224)
+texture = ExtResource("8_im2du")
+
+[node name="Bat" parent="." instance=ExtResource("3_yp2xm")]
+position = Vector2(909, 131)
+
+[node name="Table" parent="." instance=ExtResource("4_uyl1e")]
+position = Vector2(959, 887)
+
+[node name="Cheese" parent="Table" node_paths=PackedStringArray("level") instance=ExtResource("5_kw13u")]
+position = Vector2(-1, -69.0001)
+level = NodePath("../..")
+
+[node name="Chair" parent="." instance=ExtResource("5_7115g")]
+position = Vector2(1060, 887)
+
+[node name="Chair2" parent="." instance=ExtResource("5_7115g")]
+position = Vector2(854, 887)
+
+[node name="Sprite2D" parent="Chair2" index="0"]
+scale = Vector2(-0.395, 0.395)
+
+[node name="CollisionPolygon2D" parent="Chair2" index="1"]
+scale = Vector2(-0.395, 0.395)
+
+[node name="Mouse" parent="." instance=ExtResource("6_koekj")]
+position = Vector2(1278, 927)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1000, 138)
+zoom = Vector2(1.5, 1.5)
+
+[node name="HowToGrab" type="Sprite2D" parent="."]
+position = Vector2(857, 769)
+texture = ExtResource("9_f5esd")
+
+[node name="HowToSwitch" type="Sprite2D" parent="."]
+position = Vector2(1321, 870)
+texture = ExtResource("10_53yew")
+
+[editable path="Chair2"]

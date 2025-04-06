@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhbmho7cxl5t5"]
+
+[ext_resource type="Script" uid="uid://bh3h8rqg8twbt" path="res://scripts/gameplay/world.gd" id="1_4wyf3"]
+[ext_resource type="Texture2D" uid="uid://chwhbeqiod70d" path="res://sprites/environment/cave_bg.png" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://bxouqg06a8cb5" path="res://scenes/levels/test.tscn" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://b5gtbd8rv2m2n" path="res://scenes/ui/you_win.tscn" id="3_k0juu"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_4wyf3")
+level_scenes = Array[PackedScene]([ExtResource("2_rwgxs"), ExtResource("3_k0juu")])
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_nnsk1")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 912, 438)

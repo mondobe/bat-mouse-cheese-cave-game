@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://qth8uyeygmfg"]
+
+[ext_resource type="Texture2D" uid="uid://c6x6x6wb7r5x5" path="res://sprites/entities/table.png" id="1_r06n1"]
+
+[node name="Table" type="RigidBody2D" groups=["carryable"]]
+collision_layer = 3
+collision_mask = 3
+mass = 20.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.395, 0.395)
+texture = ExtResource("1_r06n1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.395, 0.395)
+polygon = PackedVector2Array(-132, -136, 131, -128, 135, -47, 122, -47, 129, 135, 91, 135, 92, -48, -91, -55, -87, 133, -119, 133, -124, -57, -133, -57)

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://ck8qpwveu8lw7"]
+
+[ext_resource type="Texture2D" uid="uid://bun4jdpjwqv8d" path="res://sprites/entities/cheese.png" id="1_6ih6m"]
+[ext_resource type="Script" uid="uid://cs1l6ldfdxwuf" path="res://scripts/gameplay/cheese.gd" id="1_kvjqq"]
+[ext_resource type="Texture2D" uid="uid://bwjm3cd1exjtu" path="res://sprites/entities/got_cheese1.png" id="2_xi2t1"]
+[ext_resource type="Texture2D" uid="uid://bocugtjk0g22f" path="res://sprites/entities/got_cheese2.png" id="3_kvjqq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gv6i6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6ih6m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xi2t1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kvjqq")
+}],
+"loop": true,
+"name": &"got",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi2t1"]
+size = Vector2(74, 34)
+
+[node name="Cheese" type="Node2D"]
+script = ExtResource("1_kvjqq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.535, 0.535)
+sprite_frames = SubResource("SpriteFrames_gv6i6")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_xi2t1")

@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxpj75bdim63u"]
+
+[ext_resource type="Script" uid="uid://bxpnhc705wbtw" path="res://scripts/gameplay/bat.gd" id="1_ss3tx"]
+[ext_resource type="Texture2D" uid="uid://b0ov8q2u74d87" path="res://sprites/bat/dive.png" id="2_5fn3r"]
+[ext_resource type="Texture2D" uid="uid://cldv8smiwuvos" path="res://sprites/bat/flap1.png" id="2_lv0ya"]
+[ext_resource type="Texture2D" uid="uid://da743gvp2xwpt" path="res://sprites/bat/flap2.png" id="3_5fn3r"]
+[ext_resource type="Texture2D" uid="uid://dnoofhsjc3jum" path="res://sprites/bat/idle.png" id="4_8qtcx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4bhu"]
+radius = 17.0
+height = 76.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0o7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5fn3r")
+}],
+"loop": true,
+"name": &"dive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lv0ya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5fn3r")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lv0ya")
+}],
+"loop": true,
+"name": &"float",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_8qtcx")
+}],
+"loop": true,
+"name": &"hang",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv0ya"]
+
+[node name="Bat" type="RigidBody2D"]
+mass = 2.0
+can_sleep = false
+lock_rotation = true
+linear_damp = 5.2
+script = ExtResource("1_ss3tx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_x4bhu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.43, 0.43)
+sprite_frames = SubResource("SpriteFrames_k0o7o")
+animation = &"dive"
+autoplay = "hang"
+
+[node name="CarryDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarryDetector"]
+position = Vector2(0, 42)
+shape = SubResource("RectangleShape2D_lv0ya")
+
+[node name="CarryJoint" type="PinJoint2D" parent="."]
+position = Vector2(0, 23)
+node_a = NodePath("..")
